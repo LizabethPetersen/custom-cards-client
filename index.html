@@ -5,24 +5,70 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Custom Cards</title>
+    <script id="card-template" type="text/x-handlebars-template">
+        <article>
+            <a href="/custom-cards-client/cards/{{id}}"><h1>{{content}}</h1></a>
+            <p>~ From {{sender}} to {{recipient}}</p>
+            <button data-method="update">UPDATE</button>
+        </article>
+    </script>
+    <style>
+        #cards > article {
+            border: solid black 1px;
+            padding: 20px;
+            margin-top: 20px;
+        }
+    </style>
 </head>
 <body>
     <nav>
         <ul>
-            <li><a href="/">cards</a></li>
-            <li><a href="/about" id="about">about</a></li>
+            <li><a href="/custom-cards-client/">home</a></li>
+            <li><a href="/custom-cards-client/cards">cards</a></li>
+            <li><a href="/custom-cards-client/about" id="about">about</a></li>
+            <li><a href="/custom-cards-client/new" id="new">new</a></li>
         </ul>
     </nav>
-    <section id="cards">
-        <!-- will show all cards -->
-    </section>
-    <section id="about">
-        <ul>
-            <li>This app is for making cool custom cards.</li>
-            <li>This app is not for making yu gi oh cards.</li>
-        </ul>
-    </section>
+    <main>
+        <section id="cards">
+            <!-- will show all cards -->
+        </section>
+        <section>
+            <form id="new-card">
+                <label for="recipient">To:</label>
+                <input type="text" name="recipient" value="sj">
+                <label for="sender">From:</label>
+                <input type="text" name="sender" value="mom">
+                <label for="content">Greeting:</label>
+                <input type="text" name="content" value="helloooo!">
+                <button type="submit">SEND</button>
+            </form>
+        </section>
+        <section>
+            <form id="update-card">
+                <label for="recipient">To:</label>
+                <input type="text" name="recipient">
+                <label for="sender">From:</label>
+                <input type="text" name="sender">
+                <label for="content">Greeting:</label>
+                <input type="text" name="content">
+                <button type="submit">SEND</button>
+            </form>
+        </section>
+        <section data-tab="about">
+            <ul>
+                <li>This app is for making cool custom cards.</li>
+                <li>This app is not for making yu gi oh cards.</li>
+            </ul>
+        </section>
+    </main>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
-    <script src="scripts/Card.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.js"></script>
+    <script src="https://cdn.rawgit.com/visionmedia/page.js/master/page.js"></script>
+    
+    <script src="scripts/views/cardview.js"></script>
+    <script src="scripts/models/Card.js"></script>
+    <script src="scripts/views/aboutview.js"></script>
+    <script src="scripts/routes.js"></script>
 </body>
 </html>
